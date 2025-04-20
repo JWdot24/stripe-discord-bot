@@ -8,7 +8,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@adminjs/fastify": "^4.2.0",
+    "@adminjs/fastify": "^3.0.1",
     "@adminjs/typeorm": "^4.0.0",
     "@fastify/static": "^6.5.0",
     "@sentry/integrations": "^7.21.1",
@@ -20,7 +20,7 @@
     "discord-api-types": "^0.37.17",
     "discord.js": "14.11.0",
     "dotenv": "^16.0.3",
-    "fastify": "^4.9.2",
+    "fastify": "^3.29.4",
     "googleapis": "^109.0.1",
     "humanize-duration": "^3.27.3",
     "node-fetch": "^2.6.7",
