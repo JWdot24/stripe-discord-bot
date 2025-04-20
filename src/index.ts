@@ -8,14 +8,15 @@ import { loadContextMenus, loadMessageCommands, loadSlashCommands, synchronizeSl
 
 import { syncSheets } from './integrations/sheets';
 
-import { Client, IntentsBitField, PermissionsBitField } from 'discord.js';
+import { Client, GatewayIntentBits } from 'discord.js';
 import { errorEmbed } from './util';
 import { loadTasks } from './handlers/tasks';
 export const client = new Client({
     intents: [
-        IntentsBitField.Flags.Guilds,
-        IntentsBitField.Flags.GuildMessages,
-        IntentsBitField.Flags.GuildMembers
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.MessageContent
     ]
 });
 

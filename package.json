@@ -27,7 +27,8 @@
     "p-queue": "^6.6.2",
     "papaparse": "^5.3.2",
     "pg": "^8.8.0",
-    "typeorm": "^0.3.10"
+    "sqlite3": "5.1.7",
+    "typeorm": "0.3.22"
   },
   "devDependencies": {
     "@types/cron": "^2.0.0",
