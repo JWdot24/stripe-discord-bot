@@ -21,7 +21,7 @@ args = "npm install"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "npx tsc"
+args = "npm run build"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
