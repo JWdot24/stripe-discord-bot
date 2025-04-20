@@ -57,14 +57,14 @@ client.on('messageCreate', (message) => {
     if ((message.channelId === process.env.STATUS_CHANNEL_ID || message.channelId === process.env.SUBSCRIBE_CHANNEL_ID || message.channelId === process.env.CANCEL_CHANNEL_ID) && !message.member?.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
         message.delete();
     }
-    
+
     const args = message.content.slice(process.env.COMMAND_PREFIX.length).split(/ +/);
     const commandName = args.shift();
 
     if (!commandName) return;
 
     const run = messageCommands.get(commandName);
-    
+
     if (!run) return;
 
     run(message, commandName);
