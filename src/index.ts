@@ -1,6 +1,3 @@
-import { config } from 'dotenv';
-config();
-
 import './sentry';
 
 import { initialize as initializeDatabase } from './database';

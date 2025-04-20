@@ -17,11 +17,7 @@ mode = "sequential"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "npm install"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run build"
+args = "npx tsc"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
