@@ -8,13 +8,13 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@adminjs/fastify": "^3.0.1",
+    "@adminjs/fastify": "^4.2.0",
     "@adminjs/typeorm": "^4.0.0",
     "@fastify/static": "^6.5.0",
     "@sentry/integrations": "^7.21.1",
     "@sentry/node": "^7.21.1",
-    "adminjs": "^6.6.3",
-    "class-validator": "^0.13.2",
+    "adminjs": "^7.8.15",
+    "class-validator": "^0.14.1",
     "cron": "^2.1.0",
     "date-format-parse": "^0.2.7",
     "discord-api-types": "^0.37.17",

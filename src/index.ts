@@ -8,7 +8,7 @@ import { loadContextMenus, loadMessageCommands, loadSlashCommands, synchronizeSl
 
 import { syncSheets } from './integrations/sheets';
 
-import { Client, GatewayIntentBits } from 'discord.js';
+import { Client, GatewayIntentBits, PermissionsBitField } from 'discord.js';
 import { errorEmbed } from './util';
 import { loadTasks } from './handlers/tasks';
 export const client = new Client({
