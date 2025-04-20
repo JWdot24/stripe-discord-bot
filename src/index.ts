@@ -88,4 +88,4 @@ client.on('ready', () => {
     }
 });
 
-client.login(process.env.DISCORD_CLIENT_TOKEN);T_TOKEN);
+client.login(process.env.DISCORD_CLIENT_TOKEN);
