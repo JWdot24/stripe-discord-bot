@@ -53,7 +53,7 @@ export const run: SlashCommandRunFunction = async (interaction) => {
 
     const userCustomer = await Postgres.getRepository(DiscordCustomer).findOne({
         where: {
-            discordUserId: interaction.user.id
+            discordUserId: user.id
         }
     });
 
