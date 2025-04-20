@@ -10,10 +10,9 @@
   "dependencies": {
     "@adminjs/fastify": "^3.0.1",
     "@adminjs/typeorm": "^4.0.0",
-    "@fastify/static": "^6.5.0",
     "@sentry/integrations": "^7.21.1",
     "@sentry/node": "^7.21.1",
-    "adminjs": "^7.8.15",
+    "adminjs": "^6.8.7",
     "class-validator": "^0.14.1",
     "cron": "^2.1.0",
     "date-format-parse": "^0.2.7",
