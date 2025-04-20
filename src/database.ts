@@ -48,9 +48,8 @@ const entities = [DiscordCustomer];
 export const Postgres = new DataSource({
     type: "sqlite",
     database: "database.sqlite",
-    entities: [__dirname + "/**/*.{js,ts}"],
-    entityPrefix: "",
-    synchronize: process.env.ENVIRONMENT === 'development',
+    entities: entities,
+    synchronize: true,
 });
 
 export const initialize = () => Postgres.initialize().then(async () => {
