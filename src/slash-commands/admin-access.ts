@@ -42,37 +42,52 @@ export const commands = [
 
 export const run: SlashCommandRunFunction = async (interaction) => {
 
-    await interaction.deferReply();
+    try {
+        // Defer the reply early to avoid timeout
+        await interaction.deferReply();
 
-    if (!interaction.memberPermissions?.has(PermissionsBitField.Flags.Administrator)) {
-        return void interaction.followUp(errorEmbed("This command needs privileged access and can only be used by administrators."));
-    }
-
-    const subCommand = (interaction.options as CommandInteractionOptionResolver).getSubcommand()!;
-    const user = (interaction.options as CommandInteractionOptionResolver).getUser("user")!;
-
-    const userCustomer = await Postgres.getRepository(DiscordCustomer).findOne({
-        where: {
-            discordUserId: user.id
+        // Check if the user has the necessary permissions
+        if (!interaction.memberPermissions?.has(PermissionsBitField.Flags.Administrator)) {
+            return void interaction.followUp(errorEmbed("This command needs privileged access and can only be used by administrators."));
         }
-    });
 
-    if (userCustomer) await Postgres.getRepository(DiscordCustomer).update(userCustomer.id, {
-        adminAccessEnabled: subCommand === "enable"
-    });
-    else await Postgres.getRepository(DiscordCustomer).insert({
-        discordUserId: user.id,
-        adminAccessEnabled: subCommand === "enable"
-    });
+        const subCommand = (interaction.options as CommandInteractionOptionResolver).getSubcommand()!;
+        const user = (interaction.options as CommandInteractionOptionResolver).getUser("user")!;
 
-    const member = interaction.guild?.members.cache.get(user.id);
+        // Check the user in the database
+        const userCustomer = await Postgres.getRepository(DiscordCustomer).findOne({
+            where: {
+                discordUserId: user.id
+            }
+        });
 
-    if (subCommand === "enable") {
-        if (member) await member.roles.add(process.env.ADMIN_ROLE_ID!);
-    } else {
-        if (member) await member.roles.remove(process.env.ADMIN_ROLE_ID!);
+        // Update or insert user info in the database
+        if (userCustomer) {
+            await Postgres.getRepository(DiscordCustomer).update(userCustomer.id, {
+                adminAccessEnabled: subCommand === "enable"
+            });
+        } else {
+            await Postgres.getRepository(DiscordCustomer).insert({
+                discordUserId: user.id,
+                adminAccessEnabled: subCommand === "enable"
+            });
+        }
+
+        const member = interaction.guild?.members.cache.get(user.id);
+
+        // Add or remove admin role based on the subcommand
+        if (subCommand === "enable") {
+            if (member) await member.roles.add(process.env.ADMIN_ROLE_ID!);
+        } else {
+            if (member) await member.roles.remove(process.env.ADMIN_ROLE_ID!);
+        }
+
+        // Send success message
+        return void interaction.followUp(successEmbed(`Successfully ${subCommand === "enable" ? "enabled" : "disabled"} access for ${user.tag}.`));
+
+    } catch (error) {
+        console.error('Error in admin-access command:', error);
+        // If something goes wrong, send a failure message
+        return void interaction.followUp(errorEmbed("There was an error while processing the request."));
     }
-
-    return void interaction.followUp(successEmbed(`Successfully ${subCommand === "enable" ? "enabled" : "disabled"} access for ${user.tag}.`));
-    
 }
