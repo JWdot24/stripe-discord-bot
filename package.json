@@ -5,7 +5,8 @@
   "author": "Androz2091 <androz2091@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "start": "npm run build && node dist/index.js"  // Added start script to run after building
   },
   "dependencies": {
     "@adminjs/fastify": "^3.0.1",
